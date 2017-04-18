@@ -1,0 +1,161 @@
+div.box {
+    border: .5px solid #CCCCCC;
+    background: #FFFFFF;
+    margin-left: 1%;
+    padding: 0px;
+}
+
+#lbl_fullname_user {
+    color: #FFFFFF;
+    text-shadow: 0 0 0 rgba(255, 255, 255, .25);
+}
+
+#mdlProfilePreview {
+    .modal-title {
+        color: #FFFFFF;
+    }
+    .modal-dialog {
+        .modal-content {
+            width: 300px;
+            margin: auto;
+            margin-top: 20%;
+            .modal-header {
+                background: #F5989D;
+                padding: 15px;
+                border: 1px #F5989D;
+                border-bottom: 1px solid #F5989D;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
+            .modal-body {
+                #lbl_fullname_user {
+                    color: #4D4D4D;
+                    text-align: center;
+                }
+                #lbl_email_user {
+                    color: #4D4D4D;
+                    text-align: center;
+                }
+                #btn_update_profile {
+                    height: 30px;
+                    width: 60%;
+                    margin-left: 20%;
+                    margin-right: 20%;
+                }
+            }
+        }
+    }
+    #img_user_profile {
+        margin: auto;
+        display: block;
+        width: 80%;
+        height: 80%;
+    }
+}
+
+#mdlProfile {
+    .modal-title {
+        color: #FFFFFF;
+    }
+    .modal-dialog {
+        .modal-content {
+            // margin: auto;
+            // margin-top: 20%;
+            .modal-header {
+                background: #F5989D;
+                padding: 15px;
+                border: 1px #F5989D;
+                border-bottom: 1px solid #F5989D;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+                height: 55px;
+                .close {
+                    margin-top: 3px;
+                }
+            }
+            .modal-body {
+                #lbl_fullname_user {
+                    color: #4D4D4D;
+                    text-align: center;
+                }
+                #lbl_email_user {
+                    color: #4D4D4D;
+                    text-align: center;
+                }
+            }
+        }
+    }
+    #img_user_profile {
+        // margin: auto;
+        // display: block;
+        width: 100px;
+        height: 100px;
+        border: 1px solid #CCCCCC;
+        border-radius: 6px;
+    }
+}
+
+#img_user_profile {
+    background: #FFFFFF;
+}
+
+#dvTableContainer {
+    thead {
+        tr {
+            background: #FEE1E3;
+            th {
+                color: #F5989D;
+            }
+        }
+    }
+    .dataTables_scrollHeadInner {
+        background: #FEE1E3;
+    }
+    .table-bordered>thead>tr>th {
+        border: none;
+    }
+    .table-bordered>tbody>tr>td {
+        border: none;
+    }
+    .table-bordered {
+        border: none;
+    }
+}
+
+.btn-delete {
+    background: #999999;
+    color: #FFFFFF;
+    font-weight: 100;
+}
+
+#mdlUser {
+    .modal-title {
+        color: #FFFFFF;
+    }
+    .modal-dialog {
+        .modal-content {
+            .modal-header {
+                background: #F5989D;
+                padding: 15px;
+                border: 1px #F5989D;
+                border-bottom: 1px solid #F5989D;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+                height: 55px;
+                .close {
+                    margin-top: 3px;
+                }
+            }
+            .modal-body {
+                #lbl_fullname_user {
+                    color: #4D4D4D;
+                    text-align: center;
+                }
+                #lbl_email_user {
+                    color: #4D4D4D;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,77 @@
+@import 'colors';
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background: #FFFFFF;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+}
+
+#dvMainContainer {
+    width: 100%;
+    height: 100%;
+}
+
+.input_text {
+    width: 80%;
+    height: 26px;
+    border: none;
+    background: none;
+    font-size: 14px;
+    color: $F_4D4D4D;
+    text-align: left;
+    margin-left: 10%;
+    border: 1px solid #CCCCCC;
+    margin-bottom: 10px;
+    padding-left: 5px;
+}
+
+.input_icons {
+    position: relative;
+    z-index: 1;
+    left: -30px;
+    top: 1px;
+    color: #F5989D;
+    cursor: pointer;
+    width: 0;
+}
+
+.white_icons {
+    color: #FFFFFF;
+}
+
+.btn_custom_success {
+    background-color: #8FC36B;
+    background-image: none;
+    border-color: #8FC36B;
+}
+
+.btn_custom_success:hover {
+    background-color: #419641;
+}
+
+.btn_custom_success:active {
+    background-color: #419641;
+}
+
+.btn_custom_success:focus {
+    background-color: #419641;
+}
+
+.btn_custom_default {
+    background-color: #e6e6e6;
+    background-image: none;
+    border-color: #CCCCCC;
+    color: #4D4D4D;
+}
+
+.btn_custom_default:hover {
+    background-color: #CCCCCC;
+}
+
+#lbl_title_module {
+    margin-left: 2.5%;
+}

@@ -1,0 +1,31 @@
+@import 'colors';
+.top_menu_custom {
+    background: #8FC36B;
+}
+
+.left_menu_custom {
+    background: #4D4D4D;
+}
+
+.left_col {
+    background: #4D4D4D;
+}
+
+// Menu seleccionado
+.nav.side-menu>li.current-page,
+.nav.side-menu>li.active {
+    border-right: 5px solid #8FC36B;
+}
+
+// Menu seleccionado - Mini
+.nav-sm .nav.child_menu li.active,
+.nav-sm .nav.side-menu li.active-sm {
+    border-right: 5px solid #8FC36B;
+}
+
+// Menu seleccionado background
+.nav.side-menu>li.active>a {
+    text-shadow: rgba(0, 0, 0, 0.25) 0 -1px 0;
+    background: #808080;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
+}

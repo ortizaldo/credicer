@@ -1,0 +1,63 @@
+@import 'colors';
+#dvMainContainer {
+    background: $B_F5989D;
+}
+
+#dvClaritaContainer {
+    position: absolute;
+    width: 505px;
+    height: 555px;
+    bottom: 0%;
+    left: 0%;
+}
+
+#img_clarita_login {
+    width: 100%;
+    height: 100%;
+}
+
+// ------------------------------------------------- LOGIN
+#dvLogin {
+    background: $B_FFFFFF;
+    width: 310px;
+    height: 480px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
+
+#dvImgContainerLogo {
+    width: 80%;
+    height: 50%;
+    margin-left: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+#img_logo_login {
+    width: 100%;
+    height: 100%;
+}
+
+#dvFormContainerLogin {
+    width: 100%;
+    height: 40%;
+}
+
+#lbl_iniciar_sesion {
+    width: 100%;
+    height: auto;
+    display: block;
+    text-align: center;
+    color: #999999;
+    margin-top: 12%;
+    margin-bottom: 5%;
+    opacity: .5;
+}
+
+#btn_login {
+    margin-top: 5%;
+    margin-left: 55%;
+}
