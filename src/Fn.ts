@@ -169,7 +169,9 @@ function addTable(divContainer: string, html) {
     $('#' + divContainer.replace("dv", "tbl")).DataTable({
         "searching": true,
         "ordering": true,
-        // "autoWidth": false,
+        "sScrollY": '100%',
+        "sScrollX": '100%',
+        //"autoWidth": true,
         // "pagingType": "full_numbers",
         "language": {
             "sProcessing": "Procesando...",

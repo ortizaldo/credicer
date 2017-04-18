@@ -39,10 +39,12 @@ namespace credicer.views {
             app.dashboardView.setModuleTitle(credicer.constantes.userModuleTitle);
             app.dashboardView.moduleSelected = app.dashboardView.moduleUser;
             app.dashboardView.SetButtonAddUser();
+            app.dashboardView.OnUpdateTable();
         }
         onClientSelected(node): void {
             app.dashboardView.setModuleTitle(credicer.constantes.clientModuleTitle);
             app.dashboardView.moduleSelected = app.dashboardView.moduleClient;
+            app.dashboardView.OnUpdateTable();
             var BtnNuevo:number = $("#btn_nuevo_usuario").length;
             if(BtnNuevo === 1) {  
                 // statement(s) will execute if the boolean expression is true
@@ -82,12 +84,15 @@ namespace credicer.views {
             app.profileController.UpdateProfile(name, lastname, email, newPassword, confirmPassword, oldPassword, picture);
         }
         OnUpdateTable(): void {
+            console.log('app.dashboardView.moduleSelected', app.dashboardView.moduleSelected);
+            console.log('app.dashboardView.moduleUser', app.dashboardView.moduleUser);
             if (app.dashboardView.moduleSelected == app.dashboardView.moduleUser) {
                 toDataTable("dvTableContainer", app.userRepository.mapUsers.values(), "Id", "Name,LastName,Address,Estado,Municipio,Phone",
                     "editar:app.dashboardView.OnEditUser,eliminar:app.dashboardView.OnDeleteUser");
-
             } else {
-
+                toDataTable("dvTableContainer", app.clientRepository.mapClients.values(), "Id", "Name,Address,Group,CreditNumber,CreditDate,ClientStatus,CurrentDebit",
+                    "");
+                console.log('entre a nada');
             }
             let node: any = d3.selectAll("#tblTableContainer_length").node();
             node.style.float = 'left';
