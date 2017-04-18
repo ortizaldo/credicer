@@ -170,7 +170,6 @@ function addTable(divContainer: string, html) {
         "searching": true,
         "ordering": true,
         "sScrollY": '100%',
-        "sScrollX": '100%',
         //"autoWidth": true,
         // "pagingType": "full_numbers",
         "language": {
