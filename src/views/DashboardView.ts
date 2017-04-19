@@ -57,8 +57,8 @@ namespace credicer.views {
             d3.selectAll("#lbl_email_user").text(app.profile.Email);
         }
         OnShowProfileModal(): void {
-            $("#mdlProfilePreview").modal("hide");
-            $("#mdlProfile").modal("show");
+            (<any>$("#mdlProfilePreview")).modal("hide");
+            (<any>$("#mdlProfile")).modal("show");
             app.dashboardView.setProfileInfo();
         }
         setProfileInfo(): void {

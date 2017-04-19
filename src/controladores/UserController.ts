@@ -62,11 +62,13 @@ namespace credicer.controllers {
             app.userController.GetUsersCallback();
             app.dashboardView.ShowConfirmation("Usuario actualizado exitosamente.");
             app.dashboardView.idCurrentUser = 0;
+            (<any>$('#mdlUser')).modal('hide');
         }
         EditUserCallback(): void {
             app.userController.GetUsersCallback();
             app.dashboardView.ShowConfirmation("Usuario actualizado exitosamente.");
             app.dashboardView.idCurrentUser = 0;
+            (<any>$('#mdlUser')).modal('hide');
         }
         DeleteUser(idUser: number): void {
             if (idUser == 0) {
@@ -85,6 +87,7 @@ namespace credicer.controllers {
             app.userController.GetUsersCallback();
             app.dashboardView.ShowConfirmation("Usuario eliminado exitosamente.");
             app.dashboardView.idCurrentUser = 0;
+            (<any>$("#mdlConfirmation")).modal('hide');
         }
     }
 }

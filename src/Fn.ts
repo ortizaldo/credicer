@@ -166,7 +166,7 @@ function toDataTable(divContainer: string, list: Array<any>, columnId: string, c
 }
 function addTable(divContainer: string, html) {
     $("#" + divContainer).html(html);
-    $('#' + divContainer.replace("dv", "tbl")).DataTable({
+    (<any>$('#' + divContainer.replace("dv", "tbl"))).DataTable({
         "searching": true,
         "ordering": true,
         "sScrollY": '100%',
