@@ -34,6 +34,7 @@ namespace credicer.controllers {
         UpdateProfileSuccess(response): void {
             if (response.Code == 0) {
                 app.dashboardView.ShowConfirmation("Perfil actualizado.");
+                (<any>$("#mdlProfile")).modal("hide");
                 app.GetProfile();
             } else {
                 app.dashboardView.ShowWarning(response.Message);

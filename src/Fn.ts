@@ -130,13 +130,32 @@ function getBodyDateTable(list: Array<any>, columnId: string, headers: string, a
                         val = res;
                     }
                 }
+                //console.log('val', val);
+                switch (val)
+                {
+                    case "SOL" :
+                        val = '<span class="label lbl-sol">'+val+'</span>';
+                        break;
+                    case "AVAL" :
+                        val = '<span class="label lbl-a">'+val+'</span>';
+                        break;
+                    case "VG" :
+                        val = '<span class="label lbl-vg">'+val+'</span>';
+                        break;
+                    case "JR" :
+                        val = '<span class="label lbl-jr">'+val+'</span>';
+                        break;
+                    case "MP" :
+                        val = '<span class="label lbl-mp">'+val+'</span>';
+                        break;
+                    default : val;
+                }
                 _body += "<TD>";
                 _body += val;
                 _body += "</TD>";
             }
         });
-
-        if (actions != null) {
+        if (actions != null && actions != "null") {
             let columnsActions: Array<string> = actions.split(',');
             columnsActions.forEach(column => {
                 let action = column.split(':');
@@ -144,9 +163,15 @@ function getBodyDateTable(list: Array<any>, columnId: string, headers: string, a
                 if (action[0].toLowerCase().indexOf("eliminar") != -1) {
                     default_column = "btn-delete";
                 }
-                _body += "<TD>";
-                _body += "<input type='button'class='btn " + default_column + "' value='" + toCapitalize(action[0]) + "'  onclick='" + action[1] + "(" + item[columnId] + ")' /> ";
-                _body += "</TD>";
+                if(action[1] != undefined && action[1] != "undefined"){
+                    _body += "<TD>";
+                    _body += "<input type='button'class='btn " + default_column + "' value='" + toCapitalize(action[0]) + "'  onclick='" + action[1] + "(" + item[columnId] + ")' /> ";
+                    _body += "</TD>";
+                }else{
+                    _body += "<TD>";
+                    _body += "&nbsp;";
+                    _body += "</TD>";
+                }
             });
         }
         _body += "</TR>\n";
@@ -156,6 +181,10 @@ function getBodyDateTable(list: Array<any>, columnId: string, headers: string, a
     return _body
 }
 function toDataTable(divContainer: string, list: Array<any>, columnId: string, columns: string, actions: string) {
+    console.log('list', list);
+    console.log('columnId', columnId);
+    console.log('columns', columns);
+    console.log('actions', actions);
     let sb: string = "";
     sb += "<TABLE id='" + divContainer.replace("dv", "tbl") + "' class='table table - bordered table - striped'>";
     sb += getHeadersDateTable(columns, actions);

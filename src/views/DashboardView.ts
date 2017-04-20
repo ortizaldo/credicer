@@ -90,9 +90,8 @@ namespace credicer.views {
                 toDataTable("dvTableContainer", app.userRepository.mapUsers.values(), "Id", "Name,LastName,Address,Estado,Municipio,Phone",
                     "editar:app.dashboardView.OnEditUser,eliminar:app.dashboardView.OnDeleteUser");
             } else {
-                toDataTable("dvTableContainer", app.clientRepository.mapClients.values(), "Id", "Name,Address,Group,CreditNumber,CreditDate,ClientStatus,CurrentDebit",
+                toDataTable("dvTableContainer", app.clientRepository.mapClients.values(), "Id", "Curp,Name,Address,Group,Amount,CreditDate,LastCreditDate,Type,ClientStatus",
                     "");
-                console.log('entre a nada');
             }
             let node: any = d3.selectAll("#tblTableContainer_length").node();
             node.style.float = 'left';
