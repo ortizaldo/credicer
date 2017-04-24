@@ -57,9 +57,12 @@ namespace credicer {
         }
 
         export namespace clients {
-            let base = ws.base() + "clients/list";
+            let base = ws.base() + "clients/";
             export var get: Function = (): string=>{
-                return base + "";
+                return base + "list";
+            }
+            export var upload: Function = (): string=>{
+                return base + "upload";
             }
         }
         

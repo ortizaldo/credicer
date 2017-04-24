@@ -44,6 +44,7 @@ namespace credicer.views {
         onClientSelected(node): void {
             app.dashboardView.setModuleTitle(credicer.constantes.clientModuleTitle);
             app.dashboardView.moduleSelected = app.dashboardView.moduleClient;
+            app.dashboardView.SetButtonImport();
             app.dashboardView.OnUpdateTable();
             var BtnNuevo:number = $("#btn_nuevo_usuario").length;
             if(BtnNuevo === 1) {  
@@ -84,8 +85,6 @@ namespace credicer.views {
             app.profileController.UpdateProfile(name, lastname, email, newPassword, confirmPassword, oldPassword, picture);
         }
         OnUpdateTable(): void {
-            console.log('app.dashboardView.moduleSelected', app.dashboardView.moduleSelected);
-            console.log('app.dashboardView.moduleUser', app.dashboardView.moduleUser);
             if (app.dashboardView.moduleSelected == app.dashboardView.moduleUser) {
                 toDataTable("dvTableContainer", app.userRepository.mapUsers.values(), "Id", "Name,LastName,Address,Estado,Municipio,Phone",
                     "editar:app.dashboardView.OnEditUser,eliminar:app.dashboardView.OnDeleteUser");
@@ -103,6 +102,7 @@ namespace credicer.views {
             let parent_filter: any = node_filter.parentNode;
             parent_filter.className = 'col-sm-9';
             app.dashboardView.SetButtonAddUser();
+            app.dashboardView.SetButtonImport();
         }
         SetButtonAddUser(): void {
             let node_filter: any = d3.selectAll("#tblTableContainer_filter").node();
@@ -121,6 +121,51 @@ namespace credicer.views {
                 d3.select(btn).attr("data-target", "#mdlUser");
             }
         }
+        SetButtonImport(): void {
+            let node_filter: any = d3.selectAll("#tblTableContainer_filter").node();
+            let parent_filter: any = node_filter.parentNode;
+            if (document.getElementById("btn_import_clnte") != null)
+                return;
+            if (app.dashboardView.moduleSelected == 2) {
+                let frm = document.createElement("form")
+                    frm.name = "importarExcel";
+                    frm.id = "importarExcel";
+                    frm.method = "post";
+                    frm.enctype = "multipart/form-data";
+                    parent_filter.appendChild(frm);
+                let divFrm = document.createElement("div")
+                    divFrm.id = "divImpExc";
+                    frm.appendChild(divFrm);
+                let lb = document.createElement("label")
+                    lb.className = "btn btn-success btn_custom_success "
+                    lb.style.marginLeft = "git init2%";
+                    lb.htmlFor = "f_UploadFile";
+                    lb.textContent = "Importar Clientes";
+                    divFrm.appendChild(lb);
+                let inputFile = document.createElement("input")
+                    inputFile.type = "file";
+                    inputFile.id = "f_UploadFile";
+                    inputFile.style.display = "none";
+                    inputFile.onchange = function(e){
+                        e.preventDefault();
+                        app.dashboardView.fileUpload(e);
+                    };
+                    divFrm.appendChild(inputFile);
+            }
+        }
+
+        fileUpload(evt): void {
+            let pathFile = $("#f_UploadFile").val();
+            fn.post(credicer.ws.clients.upload(), {"fileExcel": pathFile},
+            function(response) {
+                if (response.Code == 0) {
+                    console.log('response', response);
+                } else {
+                    app.OnError(response.Message)
+                }
+            }, app.OnError, app.token);
+        }
+
         FillUserTypesCombo(): void {
             $("#cmb_tipo_usuario").html(toCombo(app.userTypeRepository.mapUserTypes.values(), "Name", "Name"));
         }
