@@ -23,5 +23,8 @@ namespace credicer.controllers {
         GetClientsCallback(): void {
             log(app.userRepository.mapUsers);
         }
+        UploadClientsCallback(): void {
+            app.dashboardView.ShowConfirmation("Datos importados correctamente.");
+        }
     }
 }

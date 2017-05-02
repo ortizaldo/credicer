@@ -155,15 +155,29 @@ namespace credicer.views {
         }
 
         fileUpload(evt): void {
-            let pathFile = $("#f_UploadFile").val();
-            fn.post(credicer.ws.clients.upload(), {"fileExcel": pathFile},
-            function(response) {
-                if (response.Code == 0) {
-                    console.log('response', response);
-                } else {
-                    app.OnError(response.Message)
+            let form = <HTMLFormElement>$('#importarExcel')[0]; // You need to use standard javascript object here
+            let fd = new FormData(form);
+            let inputF = <HTMLInputElement>$('#f_UploadFile')[0];
+            fd.append('xls', inputF.files[0]);
+            $.ajax({
+                type: 'post',
+                url: 'http://credicer.azurewebsites.net/FileUploadExc.ashx',
+                data: fd,
+                success: function (status) {
+                    console.log('status', status);
+                    if(status === 'True'){
+                        console.log('entre', status);
+                        app.clientRepository.callbacks.forEach(callback => {
+                            callback.UploadClientsCallback();
+                        });
+                    }
+                },
+                processData: false,
+                contentType: false,
+                error: function () {
+                    alert("Whoops something went wrong!");
                 }
-            }, app.OnError, app.token);
+            });
         }
 
         FillUserTypesCombo(): void {

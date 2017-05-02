@@ -34,5 +34,6 @@ namespace credicer.repository {
     }
     export interface ClientRepositoryCallback {
         GetClientsCallback(): void;
+        UploadClientsCallback(): void;
     }
 }

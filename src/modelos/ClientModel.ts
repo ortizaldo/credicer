@@ -21,6 +21,8 @@ namespace credicer.models {
         private _group : string;
         private _creditNumber : string;
         private _lastUpdateDate : string;
+        private _estado : string;
+        private _municipio : string;
         private _active : boolean;
         
         public get Id() : string {
@@ -107,6 +109,20 @@ namespace credicer.models {
         public set LastUpdateDate(v : string) {
             this._lastUpdateDate = v;
         }
+        public get Estado() : string {
+            return this._estado;
+        }
+        public set Estado(v : string) {
+            this._estado = v;
+        }
+
+        public get Municipio() : string {
+            return this._municipio;
+        }
+        public set Municipio(v : string) {
+            this._municipio = v;
+        }
+
         public get Active() : boolean {
             return this._active;
         }

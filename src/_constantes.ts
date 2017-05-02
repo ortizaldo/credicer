@@ -8,6 +8,7 @@ namespace credicer {
         export var base : Function = (): string =>{
             //return "http://apps.migesa.com.mx/CredicerWS/RestApi.svc/";
             //return "http://localhost/crediserws/RestApi.svc/";
+            //return "http://localhost:53684/RestApi.svc/";
             return "http://credicer.azurewebsites.net/RestApi.svc/";
         }
 
