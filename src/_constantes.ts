@@ -7,9 +7,9 @@ namespace credicer {
     export namespace ws {
         export var base : Function = (): string =>{
             //return "http://apps.migesa.com.mx/CredicerWS/RestApi.svc/";
-            //return "http://localhost/crediserws/RestApi.svc/";
+            //return "http://credicer.azurewebsites.net/RestApi.svc/";
             //return "http://localhost:53684/RestApi.svc/";
-            return "http://credicer.azurewebsites.net/RestApi.svc/";
+            return "http://localhost:53684/RestApi.svc/";
         }
 
         export namespace token {
@@ -60,7 +60,7 @@ namespace credicer {
         export namespace clients {
             let base = ws.base() + "clients/";
             export var get: Function = (): string=>{
-                return base + "list";
+                return base + "";
             }
             export var upload: Function = (): string=>{
                 return base + "upload";

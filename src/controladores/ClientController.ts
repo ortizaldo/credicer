@@ -14,11 +14,11 @@ namespace credicer.controllers {
             let time_to_update = 1000 * 60 * 5;
             this.viewOperations = viewOperations;
             this.getClientsInterval = setInterval( function(){
-                app.clientRepository.GetClients(this.maxDate, this.maxId);
+                app.clientRepository.GetClients();
             }, time_to_update);
         }
         init(): void {
-            app.clientRepository.GetClients(app.userController.maxDate, app.userController.maxId);
+            app.clientRepository.GetClients();
         }
         GetClientsCallback(): void {
             log(app.userRepository.mapUsers);

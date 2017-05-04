@@ -90,7 +90,7 @@ function getHeadersDateTable(headers: string, actions: string) {
         _headers += toCapitalize(header.replace("_", " ").replace("_", " ").replace("_", " "));
         _headers += "</TD>";
     });
-    if (actions != null) {
+    if (actions != null && actions != "null") {
         let _actions: Array<string> = actions.split(',');
         _actions.forEach(column => {
             _headers += "<TD>";
@@ -181,17 +181,129 @@ function getBodyDateTable(list: Array<any>, columnId: string, headers: string, a
     return _body
 }
 function toDataTable(divContainer: string, list: Array<any>, columnId: string, columns: string, actions: string) {
-    console.log('list', list);
-    console.log('columnId', columnId);
-    console.log('columns', columns);
-    console.log('actions', actions);
     let sb: string = "";
     sb += "<TABLE id='" + divContainer.replace("dv", "tbl") + "' class='table table - bordered table - striped'>";
     sb += getHeadersDateTable(columns, actions);
+    //console.log('getHeadersDateTable', sb);
     sb += getBodyDateTable(list, columnId, columns, actions);
+    //console.log('getBodyDateTable', sb);
     sb += "</TABLE>\n";
     addTable(divContainer, sb);
     return sb;
+}
+function toDataTableClnts(divContainer: string, list: Array<any>, columnId: string, columns: string, actions: string) {
+    let _headers: any = columns.split(",");
+    let sb: string = "";
+    sb += "<TABLE id='" + divContainer.replace("dv", "tbl") + "' class='table table - bordered table - striped'>";
+    sb += getHeadersDateTable(columns, actions);
+    sb += "<TBODY id='tbodyClntes'></TBODY>\n";
+    sb += "</TABLE>\n";
+    let arr = [];
+    for (let entry of list) {
+        switch (entry.Type)
+        {
+            case "SOL" :
+                entry.Type = '<span class="label lbl-sol">'+entry.Type+'</span>';
+                break;
+            case "AVAL" :
+                entry.Type = '<span class="label lbl-a">'+entry.Type+'</span>';
+                break;
+        }
+
+        switch(entry.ClientStatus)
+        {
+            case "VG" :
+                entry.ClientStatus = '<span class="label lbl-vg">'+entry.ClientStatus+'</span>';
+                break;
+            case "JR" :
+                entry.ClientStatus = '<span class="label lbl-jr">'+entry.ClientStatus+'</span>';
+                break;
+            case "MP" :
+                entry.ClientStatus = '<span class="label lbl-mp">'+entry.ClientStatus+'</span>';
+                break;
+            case "NP" :
+                entry.ClientStatus = '<span class="label lbl-np">'+entry.ClientStatus+'</span>';
+                break;
+            default : entry.ClientStatus;
+        }
+        arr.push([
+            entry.Curp,
+            entry.Name,
+            entry.Address,
+            "Saltillo",
+            "Coahuila",
+            entry.Group,
+            entry.Amount,
+            entry.LastUpdateDate,
+            entry.LastCreditDate,
+            entry.Type,
+            entry.ClientStatus,
+            ""
+        ]);
+    }
+    addTableClnte(divContainer, arr, sb);
+    return sb;
+}
+function addTableClnte(divContainer: string, list: Array<any>, html)
+{
+    $("#" + divContainer).html(html);
+    (<any>$('#' + divContainer.replace("dv", "tbl"))).DataTable({
+        "data":list,
+        "searching": true,
+        "ordering": true,
+        "sScrollY": '100%',
+        "deferRender": true,
+        //"autoWidth": true,
+        // "pagingType": "full_numbers",
+        "language": {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        },
+        "oLanguage": {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        }
+    });
 }
 function addTable(divContainer: string, html) {
     $("#" + divContainer).html(html);
@@ -199,6 +311,7 @@ function addTable(divContainer: string, html) {
         "searching": true,
         "ordering": true,
         "sScrollY": '100%',
+        "deferRender": true,
         //"autoWidth": true,
         // "pagingType": "full_numbers",
         "language": {

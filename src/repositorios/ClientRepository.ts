@@ -11,8 +11,8 @@ namespace credicer.repository {
         SetCallback(callback: ClientRepositoryCallback) {
             app.clientRepository.callbacks.push(callback);
         }
-        GetClients(maxDate:Date, maxId: number): void {
-            fn.post(credicer.ws.clients.get(), {"maxUpdate":dateToString(maxDate), "maxId":maxId},
+        GetClients(): void {
+            fn.post(credicer.ws.clients.get(), {},
             function(response) {
                 if (response.Code == 0) {
                     let clients: Array<credicer.models.ClientModel> = response.clientes;

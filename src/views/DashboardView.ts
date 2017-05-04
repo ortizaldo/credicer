@@ -85,11 +85,14 @@ namespace credicer.views {
             app.profileController.UpdateProfile(name, lastname, email, newPassword, confirmPassword, oldPassword, picture);
         }
         OnUpdateTable(): void {
+            console.log('onUpdateTable');
             if (app.dashboardView.moduleSelected == app.dashboardView.moduleUser) {
                 toDataTable("dvTableContainer", app.userRepository.mapUsers.values(), "Id", "Name,LastName,Address,Estado,Municipio,Phone",
                     "editar:app.dashboardView.OnEditUser,eliminar:app.dashboardView.OnDeleteUser");
             } else {
-                toDataTable("dvTableContainer", app.clientRepository.mapClients.values(), "Id", "Curp,Name,Address,Group,Amount,CreditDate,LastCreditDate,Type,ClientStatus",
+                /*toDataTable("dvTableContainer", app.clientRepository.mapClients.values(), "Id", "Curp,Name,Address,Group,Amount,CreditDate,LastCreditDate,Type,ClientStatus",
+                    "");*/
+                toDataTableClnts("dvTableContainer", app.clientRepository.mapClients.values(), "Id", "Curp,Name,Address,Estado, Municipio, Group,Amount,CreditDate,LastCreditDate,Type,ClientStatus",
                     "");
             }
             let node: any = d3.selectAll("#tblTableContainer_length").node();
@@ -158,10 +161,12 @@ namespace credicer.views {
             let form = <HTMLFormElement>$('#importarExcel')[0]; // You need to use standard javascript object here
             let fd = new FormData(form);
             let inputF = <HTMLInputElement>$('#f_UploadFile')[0];
+            let urlFileUpPrd = "http://credicer.azurewebsites.net/FileUploadExc.ashx";
+            let urlFileUpDes = "http://localhost:53684/FileUploadExc.ashx";
             fd.append('xls', inputF.files[0]);
             $.ajax({
                 type: 'post',
-                url: 'http://credicer.azurewebsites.net/FileUploadExc.ashx',
+                url: urlFileUpPrd,
                 data: fd,
                 success: function (status) {
                     console.log('status', status);
