@@ -90,8 +90,6 @@ namespace credicer.views {
                 toDataTable("dvTableContainer", app.userRepository.mapUsers.values(), "Id", "Name,LastName,Address,Estado,Municipio,Phone",
                     "editar:app.dashboardView.OnEditUser,eliminar:app.dashboardView.OnDeleteUser");
             } else {
-                /*toDataTable("dvTableContainer", app.clientRepository.mapClients.values(), "Id", "Curp,Name,Address,Group,Amount,CreditDate,LastCreditDate,Type,ClientStatus",
-                    "");*/
                 toDataTableClnts("dvTableContainer", app.clientRepository.mapClients.values(), "Id", "Curp,Name,Address,Estado, Municipio, Group,Amount,CreditDate,LastCreditDate,Type,ClientStatus",
                     "");
             }
@@ -138,6 +136,7 @@ namespace credicer.views {
                     parent_filter.appendChild(frm);
                 let divFrm = document.createElement("div")
                     divFrm.id = "divImpExc";
+                    divFrm.style.display = "none";
                     frm.appendChild(divFrm);
                 let lb = document.createElement("label")
                     lb.className = "btn btn-success btn_custom_success "
@@ -153,10 +152,65 @@ namespace credicer.views {
                         e.preventDefault();
                         app.dashboardView.fileUpload(e);
                     };
-                    divFrm.appendChild(inputFile);
+
+                let selectTxt = '<div class="form-group col-sm-9">';
+                    selectTxt += '<label for="selEstado" class="col-sm-1 control-label">Estado</label>';
+                    selectTxt += '<div class="col-sm-4">';
+                    selectTxt += '<select id="selEstado" name="selEstado" class="input-sm" onchange="app.dashboardView.selectMun(event)"></select>';
+                    selectTxt += '</div>';
+                    selectTxt += '<label for="selMunicipio" class="col-sm-2 control-label">Municipio</label>';
+                    selectTxt += '<div class="col-sm-4">';
+                    selectTxt += '<select id="selMunicipio" name="selMunicipio" class="input-sm" style="display:none" onchange="app.dashboardView.filtrarMun(event)"></select>';
+                    selectTxt += '</div>';
+                    selectTxt += '</div>';
+                $("#importarExcel").append(selectTxt);
+
+                $.getJSON( "../assets/estados.json", function( data ) {
+                    let option = "";
+                    option += '<option value="0">Seleccionar..</option>';
+                    $.each( data, function( key, val ) {
+                        option += '<option value="'+val.id+'">'+val.name+'</option>';
+                    });
+                    $(option).appendTo("#selEstado");
+                });
             }
         }
-
+        selectMun(e): void{
+            e.preventDefault();
+            let idEstado = parseInt($("#selEstado").val());
+            if(idEstado > 0){
+                //filtramos el dt por estado
+                let table = (<any>$('#tblTableContainer')).DataTable();
+                let buscar = $("#selEstado option:selected").text();
+                table.columns(3).search('^'+buscar+'$', true).draw();
+                $.getJSON( "../assets/municipios.json", function( data ) {
+                    let option = "";
+                    $("#selMunicipio").html("");
+                    option += '<option value="0">Seleccionar..</option>';
+                    $.each( data, function( key, val ) {
+                        if(idEstado === val.state_id){
+                            option += '<option value="'+val.id+'">'+val.name+'</option>';
+                        }
+                    });
+                    $(option).appendTo("#selMunicipio");
+                    $("#selMunicipio").show();
+                });
+            }else{
+                $("#selMunicipio").html("");
+                $("#selMunicipio").hide();
+            }
+        }
+        filtrarMun(e): void{
+            e.preventDefault();
+            console.log('e', e);
+            let idMunicipio = parseInt($("#selMunicipio").val());
+            if(idMunicipio > 0){
+                //filtramos el dt por municipio
+                let table = (<any>$('#tblTableContainer')).DataTable();
+                let buscar = $("#selMunicipio option:selected").text();
+                table.columns(4).search('^'+buscar+'$', true).draw();
+            }
+        }
         fileUpload(evt): void {
             let form = <HTMLFormElement>$('#importarExcel')[0]; // You need to use standard javascript object here
             let fd = new FormData(form);

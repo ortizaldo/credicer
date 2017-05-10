@@ -14,6 +14,7 @@ namespace credicer.repository {
         GetClients(): void {
             fn.post(credicer.ws.clients.get(), {},
             function(response) {
+                console.log('response', response);
                 if (response.Code == 0) {
                     let clients: Array<credicer.models.ClientModel> = response.clientes;
                     clients.forEach(d => {

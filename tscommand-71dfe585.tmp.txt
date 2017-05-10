@@ -1,8 +1,1 @@
-src\_constantes.ts src\_referencias.d.ts src\App.ts src\controladores\ClientControll
-er.ts src\controladores\GroupController.ts src\controladores\Placecontroller.ts src\controladores\ProfileController.ts src\controladores\Us
-erController.ts src\Fn.ts src\libs\d3\d3.d.ts src\libs\jquery\index.d.ts src\libs\toastr\toastr.d.ts src\modelos\ClientModel.ts src\modelos
-\GroupModel.ts src\modelos\MunicipalityModel.ts src\modelos\PlaceModel.ts src\modelos\ProfileModel.ts src\modelos\StateModel.ts src\modelos
-\UserModel.ts src\modelos\UserTypeModel.ts src\repositorios\AuthRepository.ts src\repositorios\ClientRepository.ts src\repositorios\GroupRe
-pository.ts src\repositorios\LocationRepository.ts src\repositorios\PlaceRepository.ts src\repositorios\UserRepository.ts src\repositorios\
-UserTypeRepository.ts src\views\DashboardView.ts src\views\IViewOperations.ts --sourcemap --removeComments --target ES5 --module amd --out
-../js/app.js
+src\_constantes.ts src\_referencias.d.ts src\App.ts src\controladores\ClientController.ts src\controladores\GroupController.ts src\controladores\Placecontroller.ts src\controladores\ProfileController.ts src\controladores\UserController.ts src\Fn.ts src\libs\d3\d3.d.ts src\libs\jquery\index.d.ts src\libs\toastr\toastr.d.ts src\modelos\ClientModel.ts src\modelos\GroupModel.ts src\modelos\MunicipalityModel.ts src\modelos\PlaceModel.ts src\modelos\ProfileModel.ts src\modelos\StateModel.ts src\modelos\UserModel.ts src\modelos\UserTypeModel.ts src\repositorios\AuthRepository.ts src\repositorios\ClientRepository.ts src\repositorios\GroupRepository.ts src\repositorios\LocationRepository.ts src\repositorios\PlaceRepository.ts src\repositorios\UserRepository.ts src\repositorios\UserTypeRepository.ts src\views\DashboardView.ts src\views\IViewOperations.ts --sourcemap --removeComments --target ES5 --module amd --out ../js/app.js
